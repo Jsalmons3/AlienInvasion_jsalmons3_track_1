@@ -105,6 +105,20 @@ class AlienFleet:
         """Check for collisions between aliens and another sprite group"""
 
         return pygame.sprite.groupcollide(self.fleet, other_group, True, remove_bullets)
+
+    def explode_at(self, center):
+        """Destroy aliens near an explosion"""
+
+        explosion_radius = 150
+        explosion_x, explosion_y = center
+        for alien in self.fleet.copy():
+            alien_x, alien_y = alien.rect.center
+            x_distance = alien_x - explosion_x
+            y_distance = alien_y - explosion_y
+
+            if (x_distance ** 2 + y_distance ** 2) <= explosion_radius ** 2:
+                self.fleet.remove(alien)
+
     
     def check_fleet_bottom(self):
         alien: Alien

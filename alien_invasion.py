@@ -83,6 +83,9 @@ class AlienInvasion:
         if collisions:
             self.impact_sound.play()
             self.impact_sound.fadeout(500)
+            if self.ship.arsenal.explosion_shot:
+                for alien in collisions:
+                    self.alien_fleet.explode_at(alien.rect.center)
             self.powerups.check_drop(collisions)
             self.game_stats.update(collisions)
             self.HUD.update_scores()
