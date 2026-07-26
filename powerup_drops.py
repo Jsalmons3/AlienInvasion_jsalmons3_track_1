@@ -70,5 +70,17 @@ class PowerUpDrops:
         )
 
         if powerup:
-            print(f"{powerup.power_type.capitalize()} Powerup Collected")
+            self._activate_powerup(powerup)
             self.powerups.remove(powerup)
+
+    def _activate_powerup(self, powerup):
+        if powerup.power_type == "triple":
+            self.game.ship.arsenal.triple_shot = True
+
+        elif powerup.power_type == "piercing":
+            self.game.ship.arsenal.piercing_shot = True
+
+        elif powerup.power_type == "explosion":
+            self.game.ship.arsenal.explosion_shot = True
+
+        print(f"{powerup.power_type.capitalize()} Powerup Collected")

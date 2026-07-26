@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
 
 class Bullet(Sprite):
-    def __init__(self, game: 'AlienInvasion') -> None:
+    def __init__(self, game: 'AlienInvasion', x_offset: int = 0) -> None:
         super().__init__()
         self.screen = game.screen
         self.settings = game.settings
@@ -25,6 +25,7 @@ class Bullet(Sprite):
         
         self.rect = self.image.get_rect()
         self.rect.midtop = game.ship.rect.midtop
+        self.rect.x += x_offset
         self.y = float(self.rect.y)
 
     def update(self) -> None:

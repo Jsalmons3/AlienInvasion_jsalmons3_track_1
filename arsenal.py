@@ -18,6 +18,9 @@ class Arsenal:
         self.game = game
         self.settings = game.settings
         self.arsenal = pygame.sprite.Group()
+        self.triple_shot = False
+        self.piercing_shot = False
+        self.explosion_shot = False
 
     def update_arsenal(self) -> None:
         self.arsenal.update()
@@ -33,8 +36,22 @@ class Arsenal:
             bullet.draw_bullet()
 
     def fire_bullet(self) -> bool:
+        """Fire one or three lasers"""
         if len(self.arsenal) < self.settings.bullet_amount:
-            new_bullet = Bullet(self.game)
-            self.arsenal.add(new_bullet)
+
+            if self.triple_shot:
+                self._fire_triple_shot()
+            else:
+                new_bullet = Bullet(self.game)
+                self.arsenal.add(new_bullet)
             return True
         return False
+
+    def _fire_triple_shot(self):
+        left_bullet = Bullet(self.game, -20)
+        middle_bullet = Bullet(self.game)
+        right_bullet = Bullet(self.game, 20)
+
+        self.arsenal.add(left_bullet)
+        self.arsenal.add(middle_bullet)
+        self.arsenal.add(right_bullet)
