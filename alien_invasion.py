@@ -16,6 +16,7 @@ from alien_fleet import AlienFleet
 from time import sleep
 from button import Button
 from hud import HUD
+from powerup_drops import PowerUpDrops
 
 
 class AlienInvasion:
@@ -49,6 +50,7 @@ class AlienInvasion:
         self.ship = Ship(self, Arsenal(self))
         self.alien_fleet = AlienFleet(self)
         self.alien_fleet.create_fleet()
+        self.powerups = PowerUpDrops(self)
 
         self.play_button = Button(self, 'Play')
         self.game_active = False
@@ -79,6 +81,7 @@ class AlienInvasion:
         if collisions:
             self.impact_sound.play()
             self.impact_sound.fadeout(500)
+            self.powerups.check_drop(collisions)
             self.game_stats.update(collisions)
             self.HUD.update_scores()
 
@@ -116,6 +119,7 @@ class AlienInvasion:
         self.screen.blit(self.bg, (0,0))
         self.ship.draw()
         self.alien_fleet.draw()
+        self.powerups.draw()
         self.HUD.draw()
 
         if not self.game_active:
