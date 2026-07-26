@@ -53,3 +53,15 @@ class PowerUpDrops:
         for powerup in self.powerups.copy():
             if powerup.rect.top >= self.screen.get_height():
                 self.powerups.remove(powerup)
+
+    def check_collisions(self):
+        """Check if the ship collects a powerup"""
+
+        powerup = pygame.sprite.spritecollideany(
+            self.game.ship,
+            self.powerups
+        )
+
+        if powerup:
+            print("Powerup Collected")
+            self.powerups.remove(powerup)
