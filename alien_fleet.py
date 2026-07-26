@@ -101,8 +101,10 @@ class AlienFleet:
         for alien in self.fleet:
             alien.draw_alien()
 
-    def check_collisions(self, other_group):
-        return pygame.sprite.groupcollide(self.fleet, other_group, True, True)
+    def check_collisions(self, other_group, remove_bullets: bool = True):
+        """Check for collisions between aliens and another sprite group"""
+
+        return pygame.sprite.groupcollide(self.fleet, other_group, True, remove_bullets)
     
     def check_fleet_bottom(self):
         alien: Alien

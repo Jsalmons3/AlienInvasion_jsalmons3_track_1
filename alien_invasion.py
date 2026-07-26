@@ -79,7 +79,7 @@ class AlienInvasion:
             self._check_game_status()
 
         #check collisions of projectiles and aliens
-        collisions = self.alien_fleet.check_collisions(self.ship.arsenal.arsenal)
+        collisions = self.alien_fleet.check_collisions(self.ship.arsenal.arsenal, not self.ship.arsenal.piercing_shot)
         if collisions:
             self.impact_sound.play()
             self.impact_sound.fadeout(500)

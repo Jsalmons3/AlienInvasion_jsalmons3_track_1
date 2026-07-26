@@ -48,6 +48,7 @@ class Arsenal:
         return False
 
     def _fire_triple_shot(self):
+        """Fires three lasers"""
         left_bullet = Bullet(self.game, -20)
         middle_bullet = Bullet(self.game)
         right_bullet = Bullet(self.game, 20)
