@@ -17,7 +17,7 @@ class GameStats():
 
     def init_saved_scores(self):
         self.path = self.setting.scores_file
-        if self.path.exists() and self.path.stat.__sizeof__() > 80:
+        if self.path.exists() and self.path.stat.__sizeof__() > 20:
             contents = self.path.read_text()
             scores = json.loads(contents)
             self.hi_score = scores.get('hi_score', 0)

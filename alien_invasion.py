@@ -8,6 +8,7 @@ from arsenal import Arsenal
 from alien_fleet import AlienFleet
 from time import sleep
 from button import Button
+from hud import HUD
 
 
 class AlienInvasion:
@@ -16,7 +17,6 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
         self.settings.initialize_dynamic_settings()
-        self.game_stats = GameStats(self)
 
         self.screen = pygame.display.set_mode((self.settings.screen_w,self.settings.screen_h))
         pygame.display.set_caption(self.settings.name)
@@ -26,6 +26,8 @@ class AlienInvasion:
             (self.settings.screen_w, self.settings.screen_h)
             )
 
+        self.game_stats = GameStats(self)
+        self.HUD = HUD(self)
         self.running = True
         self.clock = pygame.time.Clock()
 
@@ -71,6 +73,7 @@ class AlienInvasion:
             self.impact_sound.play()
             self.impact_sound.fadeout(500)
             self.game_stats.update(collisions)
+            self.HUD.update_scores()
 
         if self.alien_fleet.check_destroyed_status():
             self._reset_level()
@@ -94,9 +97,8 @@ class AlienInvasion:
 
     def restart_game(self):
         self.settings.initialize_dynamic_settings()
-        # reset Game stats
         self.game_stats.reset_stats()
-        # update HUD scores
+        self.HUD.update_scores()
         self._reset_level()
         self.ship._center_ship()
         self.game_active = True
@@ -106,7 +108,7 @@ class AlienInvasion:
         self.screen.blit(self.bg, (0,0))
         self.ship.draw()
         self.alien_fleet.draw()
-        # draw HUD
+        self.HUD.draw()
 
         if not self.game_active:
             self.play_button.draw()
@@ -118,6 +120,7 @@ class AlienInvasion:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+                self.game_stats.save_scores()
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.KEYDOWN and self.game_active == True:
@@ -151,6 +154,7 @@ class AlienInvasion:
 
         elif event.key == pygame.K_q:
             self.running = False
+            self.game_stats.save_scores()
             pygame.quit()
             sys.exit()
 
