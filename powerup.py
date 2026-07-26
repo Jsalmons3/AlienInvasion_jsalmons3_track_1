@@ -15,12 +15,13 @@ if TYPE_CHECKING:
 class PowerUp(Sprite):
     """Represents a powerup that can be obtained"""
 
-    def __init__(self, game: 'AlienInvasion', x: int, y: int):
+    def __init__(self, game: 'AlienInvasion', x: int, y: int, power_type: str):
         """Initialize the powerup"""
         super().__init__()
         self.game = game
         self.screen = game.screen
         self.settings = game.settings
+        self.power_type = power_type
         self.speed = 3
         self.image = pygame.Surface((30, 30), pygame.SRCALPHA)
         pygame.draw.circle(self.image, (255, 0, 0), (10, 10), 10)

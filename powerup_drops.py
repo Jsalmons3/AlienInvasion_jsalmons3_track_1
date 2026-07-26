@@ -7,6 +7,7 @@ Date: 7/26/2026
 """
 
 import pygame
+import random
 from powerup import PowerUp
 from typing import TYPE_CHECKING
 
@@ -28,10 +29,16 @@ class PowerUpDrops:
         """Check if a powerup should drop"""
 
         for alien in collisions:
+
+            power_type = random.choice(
+                ["explosion", "triple", "piercing"]
+            )
+
             powerup = PowerUp(
                 self.game,
                 alien.rect.centerx,
-                alien.rect.centery
+                alien.rect.centery,
+                power_type
             )
 
             self.powerups.add(powerup)
@@ -63,5 +70,5 @@ class PowerUpDrops:
         )
 
         if powerup:
-            print("Powerup Collected")
+            print(f"{powerup.power_type.capitalize()} Powerup Collected")
             self.powerups.remove(powerup)
