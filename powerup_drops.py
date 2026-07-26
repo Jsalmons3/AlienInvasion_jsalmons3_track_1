@@ -40,3 +40,16 @@ class PowerUpDrops:
         """Draw all powerups"""
 
         self.powerups.draw(self.screen)
+
+    def update(self):
+        """Updates all active powerups"""
+
+        self.powerups.update()
+        self._remove_powerups_offscreen()
+
+    def _remove_powerups_offscreen(self):
+        """Remove powerups that have fallen off the screen"""
+
+        for powerup in self.powerups.copy():
+            if powerup.rect.top >= self.screen.get_height():
+                self.powerups.remove(powerup)

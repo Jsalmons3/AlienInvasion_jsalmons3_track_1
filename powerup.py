@@ -21,8 +21,14 @@ class PowerUp(Sprite):
         self.game = game
         self.screen = game.screen
         self.settings = game.settings
+        self.speed = 3
         self.image = pygame.Surface((30, 30), pygame.SRCALPHA)
-        pygame.draw.circle(self.image, (255, 0, 0), (15,15), 15)
+        pygame.draw.circle(self.image, (255, 0, 0), (10, 10), 10)
 
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
+
+    def update(self):
+        """Moves the powerup down the screen"""
+
+        self.rect.y += self.speed

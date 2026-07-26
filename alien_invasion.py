@@ -62,6 +62,7 @@ class AlienInvasion:
             if self.game_active:
                 self.ship.update()
                 self.alien_fleet.update_fleet()
+                self.powerups.update()
                 self._check_collisions()
             self._update_screen()
             self.clock.tick(self.settings.FPS)
