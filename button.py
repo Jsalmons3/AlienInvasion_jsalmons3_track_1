@@ -1,3 +1,10 @@
+"""
+Alien Invasion - Track 1
+Author: Jeffrey Salmons
+Purpose: Makes the play button for the game
+Starter Code: Professors Walters(RedBeard41) Alien_Invasion_starter
+Date: 7/26/2026
+"""
 import pygame.font
 
 from typing import TYPE_CHECKING

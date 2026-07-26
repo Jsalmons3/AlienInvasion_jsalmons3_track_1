@@ -1,3 +1,10 @@
+"""
+Alien Invasion - Track 1
+Author: Jeffrey Salmons
+Purpose: Adds assets and controls of the game
+Starter Code: Professors Walters(RedBeard41) Alien_Invasion_starter
+Date: 7/26/2026
+"""
 from pathlib import Path
 class Settings:
 
@@ -6,23 +13,23 @@ class Settings:
         self.screen_w = 1200
         self.screen_h = 800
         self.FPS = 60
-        self.bg_file = Path.cwd() / 'alien_Invasion_starter' / 'Assets' / 'images' / 'Starbasesnow.png'
+        self.bg_file = Path.cwd() / 'Assets' / 'images' / 'Starbasesnow.png'
         self.difficulty_scale = 1.1
-        self.scores_file = Path.cwd() / 'alien_Invasion_starter' / 'Assets' / 'file' / 'scores.json'
+        self.scores_file = Path.cwd() / 'Assets' / 'file' / 'scores.json'
 
-        self.ship_file = Path.cwd() / 'alien_Invasion_starter' / 'Assets' / 'images' / 'ship2(no bg).png'
+        self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship2(no bg).png'
         self.ship_w = 40
         self.ship_h = 60
         
 
-        self.bullet_file = Path.cwd() / 'alien_Invasion_starter' / 'Assets' / 'images' / 'laserBlast.png'
-        self.laser_sound = Path.cwd() / 'alien_Invasion_starter' / 'Assets' / 'sound' / 'laser.mp3'
-        self.impact_sound = Path.cwd() / 'alien_Invasion_starter' / 'Assets' / 'sound' / 'impactSound.mp3'
+        self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laserBlast.png'
+        self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
+        self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'impactSound.mp3'
         
         
         
 
-        self.alien_file = Path.cwd() / 'alien_Invasion_starter' / 'Assets' / 'images' / 'enemy_4.png'
+        self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemy_4.png'
         self.alien_w = 40
         self.alien_h = 40
         
@@ -36,7 +43,7 @@ class Settings:
         self.text_color = (255, 255, 255)
         self.button_font_size = 48
         self.HUD_font_size = 20
-        self.font_file = Path.cwd() / 'alien_Invasion_starter' / 'Assets' / 'Fonts' / 'Silkscreen' / 'Silkscreen-Bold.ttf'
+        self.font_file = Path.cwd() / 'Assets' / 'Fonts' / 'Silkscreen' / 'Silkscreen-Bold.ttf'
 
     def initialize_dynamic_settings(self):
         self.ship_speed = 5

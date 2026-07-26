@@ -1,3 +1,10 @@
+"""
+Alien Invasion - Track 1
+Author: Jeffrey Salmons
+Purpose: The gameplay loop
+Starter Code: Professors Walters(RedBeard41) Alien_Invasion_starter
+Date: 7/26/2026
+"""
 import sys
 import pygame
 from settings import Settings

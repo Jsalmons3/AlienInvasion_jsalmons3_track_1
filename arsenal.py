@@ -1,3 +1,10 @@
+"""
+Alien Invasion - Track 1
+Author: Jeffrey Salmons
+Purpose: Removes the bullet from the screen and keeps the orignal amount of bullets
+Starter Code: Professors Walters(RedBeard41) Alien_Invasion_starter
+Date: 7/26/2026
+"""
 import pygame
 from bullet import Bullet
 from typing import TYPE_CHECKING

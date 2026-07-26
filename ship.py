@@ -1,9 +1,16 @@
+"""
+Alien Invasion - Track 1
+Author: Jeffrey Salmons
+Purpose: Ships location and functions
+Starter Code: Professors Walters(RedBeard41) Alien_Invasion_starter
+Date: 7/26/2026
+"""
 import pygame
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
-    from alien_Invasion_starter.arsenal import Arsenal
+    from arsenal import Arsenal
 
 class Ship:
     

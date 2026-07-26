@@ -1,3 +1,10 @@
+"""
+Alien Invasion - Track 1
+Author: Jeffrey Salmons
+Purpose: Makes a hud to start the game while keeping score and hiscores and how many lifes and what level the game is on
+Starter Code: Professors Walters(RedBeard41) Alien_Invasion_starter
+Date: 7/26/2026
+"""
 import pygame.font
 # from alien_invasion import AlienInvasion
 # from typing import TYPE_CHECKING
