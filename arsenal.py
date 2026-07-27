@@ -19,12 +19,37 @@ class Arsenal:
         self.settings = game.settings
         self.arsenal = pygame.sprite.Group()
         self.triple_shot = False
+        self.triple_shot_timer = 0
+        self.piercing_shot_timer = 0
+        self.explosion_shot_timer = 0
         self.piercing_shot = False
         self.explosion_shot = False
 
     def update_arsenal(self) -> None:
+        """Update all bullets and the triple shot timer"""
         self.arsenal.update()
         self._remove_bullets_offscreen()
+
+        if self.triple_shot:
+            self.triple_shot_timer -= 1
+
+            if self.triple_shot_timer <= 0:
+                self.triple_shot = False
+                self.triple_shot_timer = 0
+
+        if self.piercing_shot:
+            self.piercing_shot_timer -= 1
+        
+            if self.piercing_shot_timer <= 0:
+                self.piercing_shot = False
+                self.piercing_shot_timer = 0
+
+        if self.explosion_shot:
+            self.explosion_shot_timer -= 1
+        
+            if self.explosion_shot_timer <= 0:
+                self.explosion_shot = False
+                self.explosion_shot_timer = 0
 
     def _remove_bullets_offscreen(self) -> None:
         for bullet in self.arsenal.copy():
@@ -37,13 +62,18 @@ class Arsenal:
 
     def fire_bullet(self) -> bool:
         """Fire one or three lasers"""
-        if len(self.arsenal) < self.settings.bullet_amount:
+        if self.triple_shot:
+            max_bullets = self.settings.bullet_amount * 3
+        else:
+            max_bullets = self.settings.bullet_amount
 
+        if len(self.arsenal) < max_bullets:
+            
             if self.triple_shot:
                 self._fire_triple_shot()
             else:
-                new_bullet = Bullet(self.game)
-                self.arsenal.add(new_bullet)
+                new_bullet = Bullet(self.game, piercing=self.piercing_shot, explosive=self.explosion_shot)
+                self.arsenal.add(new_bullet)                  
             return True
         return False
 

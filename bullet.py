@@ -13,10 +13,17 @@ if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
 
 class Bullet(Sprite):
-    def __init__(self, game: 'AlienInvasion', x_offset: int = 0) -> None:
+    """Represents a laser bullet fired by the ship"""
+
+    def __init__(self, game: 'AlienInvasion', x_offset: int = 0, piercing: bool = False, explosive: bool = False) -> None:
+        """Initialize a bullet and set its starting position"""
+
         super().__init__()
         self.screen = game.screen
         self.settings = game.settings
+
+        self.piercing = piercing
+        self.explosive = explosive
 
         self.image = pygame.image.load(self.settings.bullet_file)
         self.image = pygame.transform.scale(self.image,

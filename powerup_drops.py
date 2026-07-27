@@ -29,17 +29,20 @@ class PowerUpDrops:
         """Check if a powerup should drop"""
 
         for alien in collisions:
+            self._create_powerup(alien)
 
+    def _create_powerup(self, alien):
+        if random.randint(1, 20) == 1:
             power_type = random.choice(
-                ["explosion", "triple", "piercing"]
-            )
+                    ["explosion", "triple", "piercing"]
+                )
 
             powerup = PowerUp(
-                self.game,
-                alien.rect.centerx,
-                alien.rect.centery,
-                power_type
-            )
+                    self.game,
+                    alien.rect.centerx,
+                    alien.rect.centery,
+                    power_type
+                )
 
             self.powerups.add(powerup)
 
@@ -76,11 +79,32 @@ class PowerUpDrops:
     def _activate_powerup(self, powerup):
         if powerup.power_type == "triple":
             self.game.ship.arsenal.triple_shot = True
+            self.game.ship.arsenal.triple_shot_timer = 300
+
+            self.game.ship.arsenal.piercing_shot = False
+            self.game.ship.arsenal.piercing_shot_timer = 0
+
+            self.game.ship.arsenal.explosion_shot = False
+            self.game.ship.arsenal.explosion_shot_timer = 0
 
         elif powerup.power_type == "piercing":
+            self.game.ship.arsenal.triple_shot = False
+            self.game.ship.arsenal.triple_shot_timer = 0
+
             self.game.ship.arsenal.piercing_shot = True
+            self.game.ship.arsenal.piercing_shot_timer = 300
+
+            self.game.ship.arsenal.explosion_shot = False
+            self.game.ship.arsenal.explosion_shot_timer = 0
 
         elif powerup.power_type == "explosion":
+            self.game.ship.arsenal.triple_shot = False
+            self.game.ship.arsenal.triple_shot_timer = 0
+
+            self.game.ship.arsenal.piercing_shot = False
+            self.game.ship.arsenal.piercing_shot_timer = 0
+
             self.game.ship.arsenal.explosion_shot = True
+            self.game.ship.arsenal.explosion_shot_timer = 300
 
         print(f"{powerup.power_type.capitalize()} Powerup Collected")
