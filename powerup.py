@@ -24,7 +24,17 @@ class PowerUp(Sprite):
         self.power_type = power_type
         self.speed = 3
         self.image = pygame.Surface((30, 30), pygame.SRCALPHA)
-        pygame.draw.circle(self.image, (255, 0, 0), (10, 10), 10)
+
+        if self.power_type == "triple":
+            color = (0, 255, 0)
+
+        elif self.power_type == "piercing":
+            color = (0, 0, 255)
+
+        else:
+            color = (255, 0, 0)
+
+        pygame.draw.circle(self.image, color, (10, 10), 10)
 
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
