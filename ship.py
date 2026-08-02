@@ -13,9 +13,11 @@ if TYPE_CHECKING:
     from arsenal import Arsenal
 
 class Ship:
-    
+    """Represents the player's ship"""
 
     def __init__(self, game: 'AlienInvasion', arsenal: 'Arsenal') -> None:
+        """Initialize the ship and its arsenal"""
+
         self.game = game
         self.settings = game.settings
         self.screen = game.screen
@@ -33,15 +35,17 @@ class Ship:
         self.arsenal = arsenal
 
     def _center_ship(self):
+        """Center the ship at the bottom of the screen"""
         self.rect.midbottom = self.boundaries.midbottom
         self.x = float(self.rect.x)
 
     def update(self) -> None:
-        # updating the position of the ship
+        """Update the ship's position and its arsenal"""
         self._update_ship_movement()
         self.arsenal.update_arsenal()
 
     def _update_ship_movement(self) -> None:
+        """Update the ship's movement based on player input"""
         temp_speed = self.settings.ship_speed
         if self.moving_right and self.rect.right < self.boundaries.right:
             self.x += temp_speed
@@ -51,13 +55,16 @@ class Ship:
         self.rect.x = self.x
 
     def draw(self) -> None:
+        """Draw the ship and its bullets"""
         self.arsenal.draw()
         self.screen.blit(self.image, self.rect)
 
     def fire(self) -> bool:
+        """Fire a bullet from the ship's arsenal"""
         return self.arsenal.fire_bullet()
     
     def check_collisions(self, other_group):
+        """Check whether the ship has collided with another sprite"""
         if pygame.sprite.spritecollideany(self, other_group):
             self._center_ship()
             return True

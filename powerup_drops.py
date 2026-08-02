@@ -32,6 +32,7 @@ class PowerUpDrops:
             self._create_powerup(alien)
 
     def _create_powerup(self, alien):
+        """Create a random power up drop from the alien"""
         if random.randint(1, 20) == 1:
             power_type = random.choice(
                     ["explosion", "triple", "piercing"]
@@ -77,6 +78,7 @@ class PowerUpDrops:
             self.powerups.remove(powerup)
 
     def _activate_powerup(self, powerup):
+        """Activate the powerup effect on the ship's arsenal"""
         if powerup.power_type == "triple":
             self.game.ship.arsenal.triple_shot = True
             self.game.ship.arsenal.triple_shot_timer = 300

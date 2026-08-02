@@ -13,8 +13,10 @@ if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
 
 class Button:
+    """Represents the Play button displayed on the screen"""
 
     def __init__(self, game: 'AlienInvasion', msg):
+        """Initialize the button and its message"""
         self.game = game
         self.screen = game.screen
         self.boundaries = game.screen.get_rect()
@@ -26,13 +28,16 @@ class Button:
         self._prep_msg(msg)
 
     def _prep_msg(self, msg):
+        """Render the button's text and center it on the button"""
         self.msg_image = self.font.render(msg, True, self.settings.text_color, None)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
 
     def draw(self):
+        """Draw the button and its text to the screen"""
         self.screen.fill(self.settings.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
 
     def check_clicked(self, mouse_pos):
+        """Return True if the button was clicked"""
         return self.rect.collidepoint(mouse_pos)

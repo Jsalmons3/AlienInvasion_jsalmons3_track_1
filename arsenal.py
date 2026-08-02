@@ -14,7 +14,9 @@ if TYPE_CHECKING:
     
 
 class Arsenal:
+    """Manages the ship's bullets and active power ups"""
     def __init__(self, game: 'AlienInvasion'):
+        """Initialize the arsenal and power ups"""
         self.game = game
         self.settings = game.settings
         self.arsenal = pygame.sprite.Group()
@@ -26,7 +28,7 @@ class Arsenal:
         self.explosion_shot = False
 
     def update_arsenal(self) -> None:
-        """Update all bullets and the triple shot timer"""
+        """Update all bullets and all power up timers"""
         self.arsenal.update()
         self._remove_bullets_offscreen()
 
@@ -52,11 +54,13 @@ class Arsenal:
                 self.explosion_shot_timer = 0
 
     def _remove_bullets_offscreen(self) -> None:
+        """Remove bullets that have gone off the screen"""
         for bullet in self.arsenal.copy():
             if bullet.rect.bottom <= 0:
                 self.arsenal.remove(bullet)
 
     def draw(self) -> None:
+        """Draw all bullets"""
         for bullet in self.arsenal:
             bullet.draw_bullet()
 
